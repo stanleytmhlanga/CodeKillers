@@ -1,0 +1,82 @@
+﻿@model MunicipalityValuations.Models.Municipality
+@{
+    ViewBag.Title = "ViewMunicipalityValuations";
+}
+
+<div class="wrapper wrapper-content animated fadeInRight">
+
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="ibox-content">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Municipality Valuaions</h2>
+                        <small>Municipality details</small>
+                        <ul class="todo-list m-t ui-sortable">
+                            <li>
+                                <span class="m-l-xs">Municipality Name</span>
+                                <span class="label label-primary" style="font-size: 15px;">@Model.Name</span>
+                            </li>
+                            <li>
+                                <span class="m-l-xs">Municipality ID</span>
+                                <span class="label label-primary" style="font-size: 15px;">@Model.MunicipalityIdentificationNumber</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12">
+            <a class="btn btn-primary btn-lg" data-target="#ValuationModal" data-toggle="modal">Add Valuation
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12">
+            @if (Model.Valuations.Count > 0)
+            {
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>Period</th>
+                        <th>Lastest GV Date</th>
+                        <th>VR on File</th>
+                        <th>Rates</th>
+                        <th>Rates Period</th>
+                        <th>Usage</th>
+                        <th>Complited</th>
+                        <th>Supplimentary</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var val in Model.Valuations)
+                    {
+                        <tr>
+                            <td>@val.Period</td>
+                            <td>@val.LatestGvDate</td>
+                            <td>@val.VrOnFile</td>
+                            <td>@val.Rates</td>
+                            <td>@val.RatesPeriod</td>
+                            <td>@val.Usage</td>
+                            <td>@val.Complited</td>
+                            <td>@val.Supplimentary</td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="warning p-m">
+                    <p class="text-warning m-l-xs" style="font-size: 15px">No Valuations</p>
+                </div>
+            }
+        </div>
+    </div>
+
+    @Html.Partial("_AddValuation", new ViewDataDictionary { { "municipalityId", Model.MunicipalityId } })
+</div>

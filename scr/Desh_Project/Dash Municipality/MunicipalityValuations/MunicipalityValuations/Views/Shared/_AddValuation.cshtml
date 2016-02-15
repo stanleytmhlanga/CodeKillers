@@ -1,0 +1,118 @@
+﻿
+
+<div aria-hidden="true" role="dialog" tabindex="-1" id="ValuationModal" class="modal inmodal in" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">Add Valuation</h4>
+            </div>
+
+            @using (Html.BeginForm("AddValuation", "Home", FormMethod.Post,new { @id = "valuationsForm"}))
+            { <div class="modal-body">
+                <div class="row">@Html.ValidationSummary(true)</div>
+
+                <input type="hidden" value="@ViewData["municipalityId"]" name="MunicipalityId" />
+                <input type="hidden" name="Period" id="Period"/>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Period</label>
+                        <div class="col-lg-3">
+                            <input class="form-control dateTime" type="text" id="PeriodFrom" placeholder="From" required="Required" />
+                        </div>
+                        <div class="col-lg-3">
+                            <input class="form-control dateTime" type="text" id="PeriodTo" placeholder="To" required="Required" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Lastest GV Date</label>
+                        <div class="col-lg-6">
+                            <div class="input-group date" id="dateTime">
+                                <input type="text" class="form-control" name="LatestGvDate">
+                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Supplimentary</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" type="text" name="Supplimentary" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Rates Period</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" type="text" name="RatesPeriod" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">VR on File</label>
+                        <div class="col-lg-1">
+                            <input class="checkbox" type="checkbox" name="VrOnFile" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Rates</label>
+                        <div class="col-lg-1">
+                            <input class="form-control" type="checkbox" name="Rates" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Usage</label>
+                        <div class="col-lg-1">
+                            <input class="form-control" type="checkbox" name="Usage" />
+                        </div>
+                    </div>
+                </div>
+                <div class="row m-b">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Complited</label>
+                        <div class="col-lg-1">
+                            <input class="form-control" type="checkbox" name="Complited" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button data-dismiss="modal" class="btn btn-white" type="button">Close</button>
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+            }
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $('#dateTime').datepicker({
+            format: " yyyy", // Notice the Extra space at the beginning
+            viewMode: "years",
+            minViewMode: "years"
+        });
+
+        $('.dateTime').datepicker({
+            format: " yyyy", // Notice the Extra space at the beginning
+            viewMode: "years",
+            minViewMode: "years"
+        });
+
+        $("#valuationsForm").on("submit", function() {
+            var periodFrom = $('#PeriodFrom').val();
+            var periodTo = $('#PeriodTo').val();
+            $('#Period').val(periodFrom - periodTo);
+        });
+    });
+</script>
