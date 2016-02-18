@@ -13,7 +13,7 @@ namespace MunicipalityValuations.Models
         [Key]
         public int MunicipalityValuationId { get; set; }
         public string Period { get; set; }
-
+        [DataType(DataType.Date)]
         [Display(Name = "Lastest GV Date")]
         public DateTime LatestGvDate { get; set; }
 

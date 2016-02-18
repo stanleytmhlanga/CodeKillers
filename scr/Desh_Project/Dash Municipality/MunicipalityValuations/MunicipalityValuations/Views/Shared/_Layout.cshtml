@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8" />
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
@@ -9,11 +9,15 @@
     @Styles.Render("~/Content/plugins/dataTables/dataTablesStyles")
     @Styles.Render("~/plugins/dataPickerStyles")
     @Scripts.Render("~/bundles/modernizr")
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css">*@
+
+
 </head>
 <body>
-    <div class="navbar navbar-inverse">
-        <div class="container">
-            @*<div class="navbar-header">
+<div class="navbar navbar-inverse">
+    <div class="container">
+        @*<div class="navbar-header">
                     <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
@@ -29,40 +33,83 @@
                     </ul>
                     @Html.Partial("_LoginPartial")
                 </div>*@
-            <div class="row">
-                <div class="col-xs-6">
-                    <h1>Municipality Valuations App</h1>
-                </div>
-                <div class="col-md-6">
-                    <div class="navbar-collapse collapse">
-                        <ul class="nav navbar-nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home", new { @style = "font-size: 20px;" })</li>
-                            <li>@Html.ActionLink("About App", "Index", "Home", new { @style = "font-size: 20px;" })</li>
-                        </ul>
-                    </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <h2>Municipality Valuations App</h2>
+            </div>
+            <div class="col-md-6">
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home", new {@style = "font-size: 20px;"})</li>
+                        <li>@Html.ActionLink("About App", "Index", "Home", new {@style = "font-size: 20px;"})</li>
+                    </ul>
                 </div>
             </div>
         </div>
     </div>
-    <div class="container gray-bg">
-        <div style="min-height: 757px;">
-            @RenderBody()
-        </div>
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - Municipality Valuations Report App</p>
-        </footer>
+</div>
+<div class="container gray-bg">
+    <div style="min-height: 757px;">
+        @RenderBody()
     </div>
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year - Municipality Valuations Report App</p>
+    </footer>
+</div>
 
-    @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/bootstrap")
-    @Scripts.Render("~/bundles/inspinia")
-    @Scripts.Render("~/plugins/slimScroll")
-    @Scripts.Render("~/plugins/dataTables")
-    @Scripts.Render("~/plugins/iCheck")
-    @Scripts.Render("~/plugins/dataPicker")
-    @Scripts.Render("~/app/appScript")
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@Scripts.Render("~/bundles/inspinia")
+@Scripts.Render("~/plugins/slimScroll")
+@Scripts.Render("~/plugins/dataTables")
+@Scripts.Render("~/plugins/iCheck")
+@Scripts.Render("~/plugins/dataPicker")
+@Scripts.Render("~/app/appScript")
+<script src="~/Scripts/bootstrap-checkbox.js"></script>
+<script src="~/Scripts/bootstrap-checkbox.min.js"></script>
+<script>
+    $(':checkbox').checkboxpicker();
+    $('.checkbox').prop('checked', false);
+    $('.dateTimeInput').datepicker();
 
-    @RenderSection("scripts", required: false)
+    $('#RatesPeriodTimeFrom').datepicker({
+        format: " yyyy", // Notice the Extra space at the beginning
+        viewMode: "years",
+        minViewMode: "years"
+    });
+    $('#RatesPeriodTimeTo').datepicker({
+        format: " yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+    });
+
+    $('#PeriodFrom').datepicker({
+        format: " yyyy", 
+        viewMode: "years",
+        minViewMode: "years"
+    });
+
+    $('#PeriodTo').datepicker({
+        format: " yyyy",
+        viewMode: "years",
+        minViewMode: "years"
+    });
+
+    $("#valuationsForm").on("submit", function () {
+        var periodFrom = $('#PeriodFrom').val();
+        var periodTo = $('#PeriodTo').val();
+        var RatePeriodFrom = $('#RatesPeriodTimeFrom').val();
+        var RatePeriodTo = $('#RatesPeriodTimeTo').val();
+        $('#Period').val(periodFrom + "-" + periodTo);
+        $('#RatesPeriod').val(RatePeriodFrom + "-" + RatePeriodTo);
+    });
+
+</script>
+
+@RenderSection("scripts", required: false)
+
+
 </body>
 </html>
+

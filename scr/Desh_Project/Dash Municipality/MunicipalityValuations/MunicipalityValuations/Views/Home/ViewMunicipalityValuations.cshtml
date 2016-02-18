@@ -39,14 +39,14 @@
         <div class="col-xs-12">
             @if (Model.Valuations.Count > 0)
             {
-                <table class="table table-striped">
+                <table class="table table-striped responsive" id="MunicipalityValuationDataTable">
                     <thead>
                     <tr>
                         <th>Period</th>
+                        <th>Rates Period</th>
                         <th>Lastest GV Date</th>
                         <th>VR on File</th>
                         <th>Rates</th>
-                        <th>Rates Period</th>
                         <th>Usage</th>
                         <th>Complited</th>
                         <th>Supplimentary</th>
@@ -56,13 +56,13 @@
                     @foreach (var val in Model.Valuations)
                     {
                         <tr>
-                            <td>@val.Period</td>
-                            <td>@val.LatestGvDate</td>
-                            <td>@val.VrOnFile</td>
-                            <td>@val.Rates</td>
+                            <td>@Html.DisplayFor(m => val.Period)</td>
                             <td>@val.RatesPeriod</td>
-                            <td>@val.Usage</td>
-                            <td>@val.Complited</td>
+                            <td>@val.LatestGvDate</td>
+                            <td>@Html.DisplayFor(m => val.VrOnFile)</td>
+                            <td>@Html.DisplayFor(m => val.Rates)</td>
+                            <td>@Html.DisplayFor(m => val.Usage)</td>
+                            <td>@Html.DisplayFor(m => val.Complited)</td>
                             <td>@val.Supplimentary</td>
                         </tr>
                     }
@@ -77,6 +77,6 @@
             }
         </div>
     </div>
-
+    
     @Html.Partial("_AddValuation", new ViewDataDictionary { { "municipalityId", Model.MunicipalityId } })
 </div>

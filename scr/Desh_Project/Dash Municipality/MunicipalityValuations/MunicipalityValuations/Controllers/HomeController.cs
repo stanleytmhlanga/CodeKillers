@@ -65,6 +65,16 @@ namespace MunicipalityValuations.Controllers
         [HttpPost]
         public ActionResult AddValuation(MunicipalityValuation model)
         {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+            using (var ctx = new MunicipalityContext())
+            {
+                ctx.MunicipalityValuations.Add(model);
+                ctx.SaveChanges();
+            }
+
             return RedirectToAction("ViewMunicipalityValuations", new {id = model.MunicipalityId});
         }
     }
