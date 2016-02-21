@@ -1,0 +1,133 @@
+﻿
+<style>
+    .datepicker {
+        z-index: 2500 !important;
+    }
+</style>
+
+
+<div aria-hidden="true" role="dialog" tabindex="-1" id="ValuationModal" class="modal inmodal in" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content animated bounceInRight">
+            <div class="modal-header">
+                <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+                <i class="fa fa-laptop modal-icon"></i>
+                <h4 class="modal-title">Add Valuation</h4>
+            </div>
+
+            @using (Html.BeginForm("EditValuation", "Home", FormMethod.Post, new { @id = "valuationsForm" }))
+            {
+                <div class="modal-body">
+                    <div class="row">@Html.ValidationSummary(true)</div>
+
+                    <input type="hidden" value="@ViewData["municipalityId"]" name="MunicipalityId" />
+                    <input type="hidden" name="Period" id="Period" />
+                    <input type="hidden" name="RatesPeriod" id="RatesPeriod" />
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Period</label>
+                            <div class="col-lg-3">
+                                @*<input class="form-control dateTimeInput" type="text" id="PeriodFrom" placeholder="From" required="Required"/>*@
+
+                                <div class="input-group date">
+                                    <input type="text" class="form-control" id="PeriodFrom" name="PeriodFrom" placeholder="From" data-provide="datepicker" data-date-format="yyyy" data-date-viewMode="years">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <input class="form-control" type="text" id="PeriodTo" placeholder="To" data-provide="datepicker" data-date-format="yyyy" required="Required" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Rates Period</label>
+                            @*<div class="col-lg-6">
+                                    <input class="form-control" type="text" name="RatesPeriod" />
+                                </div>*@
+                            <div class="col-lg-3">
+
+                                <div class="input-group date">
+                                    <input type="text" id="RatesPeriodTimeFrom" class="form-control" name="RatesPeriod" placeholder="From" data-provide="datepicker">
+                                </div>
+                            </div>
+                            <div class="col-lg-3">
+                                <input class="form-control" type="text" id="RatesPeriodTimeTo" placeholder="To" data-provide="datepicker" required="Required" />
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Lastest GV Date</label>
+                            <div class="col-lg-6">
+                                <div class="input-group date" id="dateTime">
+                                    <input type="text" class="form-control" name="LatestGvDate" data-provide="datepicker">
+                                    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Supplimentary</label>
+                            <div class="col-lg-6">
+                                <input class="form-control" type="text" name="Supplimentary" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">VR on File</label>
+                            <div class="col-lg-8">
+                                <input class="checkbox checkbox" id="VrOnFile" type="checkbox" value="true" name="VrOnFile" />
+                                <input type="hidden" value="false" name="VrOnFile" />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label">Rates</label>
+                            <div class="col-lg-8">
+                                <input class="form-control checkbox" id="Rates" type="checkbox" value="true" name="Rates" />
+                                <input type="hidden" value="false" name="Rates" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label ">Usage</label>
+                            <div class="col-lg-8">
+                                <input class="form-control checkbox" id="Usage" type="checkbox" value="true" name="Usage" />
+                                <input type="hidden" value="false" name="Usage" />
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row m-b">
+                        <div class="form-group">
+                            <label class="col-lg-4 control-label ">Complited</label>
+                            <div class="col-lg-8">
+                                <input class="form-control checkbox" id="Complited" type="checkbox" value="true" name="Complited" />
+                                <input type="hidden" value="false" name="Complited" />
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-white" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/Scripts/app/modalScript.js"></script>
+}

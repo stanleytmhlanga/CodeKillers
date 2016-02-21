@@ -1,0 +1,29 @@
+﻿<div aria-hidden="true" role="dialog" tabindex="-1" id="MunicipalityValuationModal" class="modal inmodal in" style="display: none;">
+<div class="modal-dialog">
+    <div class="modal-content animated bounceInRight">
+        <div class="modal-header">
+            <button data-dismiss="modal" class="close" type="button"><span aria-hidden="true">×</span><span class="sr-only">Close</span></button>
+            <i class="fa fa-laptop modal-icon"></i>
+            <h4 class="modal-title">Delete Municipality Valuation</h4>
+        </div>
+
+        @using (Html.BeginForm("DeleteMunicipalityValuations", "Home", FormMethod.Post))
+        { <div class="modal-body">
+
+                <div class="row">
+                    <div class="form-group">
+                        <label class="col-lg-4 control-label">Name</label>
+                        <div class="col-lg-6">
+                            <input class="form-control" type="text" name="Name" required="Required" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    <button data-dismiss="modal" class="btn btn-white" type="button">Close</button>
+                    <button class="btn btn-primary" type="submit">Save</button>
+                </div>
+        }
+    </div>
+</div>
+</div>

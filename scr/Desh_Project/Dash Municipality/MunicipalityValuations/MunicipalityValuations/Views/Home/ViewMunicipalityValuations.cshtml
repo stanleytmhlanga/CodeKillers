@@ -34,9 +34,9 @@
             </a>
         </div>
     </div>
-
+   
     <div class="row">
-        <div class="col-xs-12">
+        <div class="col-xs-12" >
             @if (Model.Valuations.Count > 0)
             {
                 <table class="table table-striped responsive" id="MunicipalityValuationDataTable">
@@ -50,6 +50,8 @@
                         <th>Usage</th>
                         <th>Complited</th>
                         <th>Supplimentary</th>
+                        <th></th>
+                        <th></th>
                     </tr>
                     </thead>
                     <tbody>
@@ -57,13 +59,17 @@
                     {
                         <tr>
                             <td>@Html.DisplayFor(m => val.Period)</td>
-                            <td>@val.RatesPeriod</td>
-                            <td>@val.LatestGvDate</td>
+                            <td>@Html.DisplayFor(m=> val.RatesPeriod)</td>
+                            <td>@Html.DisplayFor(m=> val.LatestGvDate)</td>
                             <td>@Html.DisplayFor(m => val.VrOnFile)</td>
                             <td>@Html.DisplayFor(m => val.Rates)</td>
                             <td>@Html.DisplayFor(m => val.Usage)</td>
                             <td>@Html.DisplayFor(m => val.Complited)</td>
-                            <td>@val.Supplimentary</td>
+                            <td>@Html.DisplayFor(m=>val.Supplimentary)</td>
+                            <td>@Html.ActionLink("Edit", "EditValuation", new {id = val.MunicipalityValuationId}, new {@class = "edit"})</td>
+                           @* <td><a href="#" id="editValuation" data-valuationId="@val.MunicipalityValuationId" data-municipalityId ="@val.MunicipalityId" data-target="#ValuationModal" data-toggle="modal" >Edit</a></td>*@
+                            @*<td>@Html.ActionLink("Delete", "DeleteMunicipalityValuations", new { id = val.MunicipalityValuationId },new {@class="DeleteValuation",@id=val.MunicipalityValuationId})</td>*@
+                            <td><a href="#" id="deleteValuation" data-valuationId="@val.MunicipalityValuationId" data-municipalityId ="@val.MunicipalityId">Delete</a></td>
                         </tr>
                     }
                     </tbody>
